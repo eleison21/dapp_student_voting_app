@@ -1,50 +1,60 @@
 pragma solidity 0.4.20;
 
 contract Election {
-    // Model a Candidate
+    address public admin;
+
+    // Candidate struct without an ID field.
     struct Candidate {
-        uint id;
         string name;
+        string party;
         uint voteCount;
     }
-
-    // Store accounts that have voted
-    mapping(address => bool) public voters;
-    // Store Candidates
-    // Fetch Candidate
+    
+    // Mapping from candidate number (index) to candidate details.
     mapping(uint => Candidate) public candidates;
-    // Store Candidates Count
+    mapping(address => bool) public voters;
+    mapping(address => string) public voterNames;
+    
     uint public candidatesCount;
-
-    // voted event
-    event votedEvent (
-        uint indexed _candidateId
-    );
-
-    function Election () public {
-        addCandidate("Candidate 1");
-        addCandidate("Candidate 2");
+    
+    // Updated events with no candidate ID.
+    event votedEvent(string candidateName, string voterName);
+    event candidateAdded(string name, string party);
+    
+    modifier onlyAdmin() {
+        require(msg.sender == admin);
+        _;
     }
-
-    function addCandidate (string _name) private {
-        candidatesCount ++;
-        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+    
+    // Constructor – sets the deployer as admin.
+    // Note: No candidates are added by default.
+    function Election() public {
+        admin = msg.sender;
     }
-
-    function vote (uint _candidateId) public {
-        // require that they haven't voted before
+    
+    // Private function to add a candidate.
+    function addCandidate(string _name, string _party) private {
+        candidatesCount++;
+        candidates[candidatesCount] = Candidate(_name, _party, 0);
+        candidateAdded(_name, _party);
+    }
+    
+    // Public admin function to add a candidate.
+    function adminAddCandidate(string _name, string _party) public onlyAdmin {
+        addCandidate(_name, _party);
+    }
+    
+    // Vote function now emits the candidate's name and the voter's name.
+    // The candidate is selected via the mapping index (but the struct does not contain the ID)
+    function vote(uint _candidateNumber, string _voterName) public {
         require(!voters[msg.sender]);
-
-        // require a valid candidate
-        require(_candidateId > 0 && _candidateId <= candidatesCount);
-
-        // record that voter has voted
+        require(_candidateNumber > 0 && _candidateNumber <= candidatesCount);
+        
         voters[msg.sender] = true;
-
-        // update candidate vote Count
-        candidates[_candidateId].voteCount ++;
-
-        // trigger voted event
-        votedEvent(_candidateId);
+        voterNames[msg.sender] = _voterName;
+        candidates[_candidateNumber].voteCount++;
+        
+        // Emit event without candidate ID.
+        votedEvent(candidates[_candidateNumber].name, _voterName);
     }
 }

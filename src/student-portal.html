@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Election Results - Student Portal</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+      /* Global Styles */
+      body {
+        background-color: #eef2f7;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+      /* Container styling for the main card look */
+      .container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      /* Header styling */
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+      hr {
+        border-top: 1px solid #ccc;
+      }
+      /* Table styling */
+      .table {
+        margin-bottom: 20px;
+      }
+      /* Form elements */
+      .form-group label {
+        font-weight: bold;
+      }
+      .btn {
+        border-radius: 5px;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+      .btn-block {
+        display: block;
+        width: 100%;
+      }
+      /* Loader styling */
+      #loader {
+        margin-top: 20px;
+      }
+      /* Account Address styling */
+      #accountAddress {
+        margin-top: 20px;
+        font-weight: bold;
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" style="max-width: 650px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="text-center mt-4">Voting Results</h1>
+          <hr/>
+          <div id="loader">
+            <p class="text-center">Loading...</p>
+          </div>
+          <div id="content" style="display: none;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <!-- Removed the ID (#) column -->
+                  <th>Name</th>
+                  <th>Party</th>
+                  <th>Votes</th>
+                </tr>
+              </thead>
+              <tbody id="candidatesResults"></tbody>
+            </table>
+            <hr/>
+            <!-- Voting form includes "Your Name" field -->
+            <form onsubmit="App.castVote(); return false;">
+              <div class="form-group">
+                <label for="candidatesSelect">Select Candidate</label>
+                <select class="form-control" id="candidatesSelect"></select>
+              </div>
+              <div class="form-group">
+                <label for="voterName">Your Name</label>
+                <input type="text" class="form-control" id="voterName" placeholder="Enter your name" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Vote</button>
+            </form>
+            <hr/>
+            <p id="accountAddress" class="text-center"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- jQuery and Bootstrap JS (local or CDN) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Web3 and Truffle Contract -->
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <!-- dApp logic -->
+    <script src="js/app.js"></script>
+  </body>
+</html>

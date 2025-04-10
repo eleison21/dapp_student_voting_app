@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+      body {
+        background-color: #f4f6f9;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+      /* Navbar styling: white background with subtle shadow */
+      .navbar {
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand img {
+        height: 40px;
+        margin-right: 10px;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: #007bff !important;
+      }
+      /* Card styling */
+      .admin-card {
+        max-width: 700px;
+        margin: 50px auto;
+        border: none;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .admin-card .card-header {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        font-size: 1.3rem;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+      footer {
+        background-color: #343a40;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <!-- Replace logo.png with your actual logo filename/path -->
+          <img src="logo.png" alt="Logo" />
+          Student Voting App
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+      <div class="card admin-card">
+        <div class="card-header">Admin Management Panel</div>
+        <div class="card-body">
+          <!-- Admin Account Address -->
+          <p id="adminAccountAddress" class="text-center text-secondary mb-4"></p>
+
+          <!-- Form to add a candidate -->
+          <form id="addCandidateForm" class="mb-4">
+            <div class="form-group mb-3">
+              <label for="newCandidateName" class="form-label">Candidate Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCandidateName"
+                placeholder="Enter candidate name"
+                required
+              />
+            </div>
+            <div class="form-group mb-3">
+              <label for="newCandidateParty" class="form-label">Candidate Party</label>
+              <input
+                type="text"
+                class="form-control"
+                id="newCandidateParty"
+                placeholder="Enter candidate party"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Add Candidate</button>
+          </form>
+
+          <hr />
+          <h4 class="text-center mb-3">Existing Candidates</h4>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <!-- No # or ID column -->
+                  <th>Name</th>
+                  <th>Party</th>
+                  <th>Votes</th>
+                </tr>
+              </thead>
+              <tbody id="candidateList"></tbody>
+            </table>
+          </div>
+          
+          <div class="text-center">
+            <a href="index.html" class="btn btn-secondary mt-3">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p class="m-0">&copy; 2025 Student Voting App. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Include jQuery, Bootstrap, Web3, Truffle Contract, and admin.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
