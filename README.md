@@ -47,30 +47,3 @@ Visit this URL in your browser: http://localhost:3000
 If you get stuck, please reference the free video tutorial.
 
 
-/project-root
-├── backend
-│   ├── server.js
-│   ├── admins.json
-│   └── students.json
-│
-├── contracts
-│   ├── Election.sol
-│   └── Migrations.sol
-│
-├── migrations
-│   ├── 1_initial_migration.js
-│   └── 2_deploy_contracts.js
-│
-├── public
-│   ├── index.html             // Unified login page
-│   ├── student-portal.html    // Student voting portal
-│   ├── admin-panel.html       // Admin panel to add new candidates
-│   └── js
-│       ├── app.js            // Voting dApp logic for students
-│       ├── admin.js          // Admin-specific dApp logic (add candidates)
-│       ├── web3.min.js       // Web3 library (or reference via CDN)
-│       └── truffle-contract.js // Truffle Contract library (or CDN)
-│
-├── truffle-config.js
-└── package.json
-s
